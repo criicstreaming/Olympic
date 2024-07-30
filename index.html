@@ -1,3 +1,4 @@
+ਰੌਣਕ (RONAK)💠:
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,3 +79,49 @@
       "feed_12": "https://prod-sports-eng-cf.jiocinema.com/hls/live/2112597/uhd_akamai_ctv_avc_eng_olympic_feed12_270724/index.m3u8",
       "feed_13": "https://prod-sports-eng-cf.jiocinema.com/hls/live/2112598/uhd_akamai_ctv_avc_eng_olympic_feed13_270724/index.m3u8",
       "feed_14": "https://prod-sports-eng-cf.jiocinema.com/hls/live/2112598/uhd_akamai_ctv_avc_eng_olympic_feed14_270724/index.m3u8",
+      "feed_15": "https://prod-sports-eng-cf.jiocinema.com/hls/live/2112598/uhd_akamai_ctv_avc_eng_olympic_feed15_270724/index.m3u8",
+      "feed_16": "https://prod-sports-eng-cf.jiocinema.com/hls/live/2112599/uhd_akamai_ctv_avc_eng_olympic_feed16_270724/index.m3u8",
+      "feed_17": "https://prod-sports-eng-cf.jiocinema.com/hls/live/2112599/uhd_akamai_ctv_avc_eng_olympic_feed17_270724/index.m3u8"
+    };
+
+      var playerInstance = jwplayer("video");
+
+      document.getElementById("video-select").addEventListener("change", function() {
+        var selectedValue = this.value;
+        var videoSource = videoSources[selectedValue];
+
+        playerInstance.load([{ file: videoSource }]);
+        playerInstance.play();
+      });
+
+      document.getElementById("language-switch").addEventListener("click", function() {
+        var selectedValue = document.getElementById("video-select").value;
+        var currentIndex = Object.keys(videoSources).indexOf(selectedValue);
+        var nextIndex = (currentIndex + 1) % Object.keys(videoSources).length;
+        var nextLanguage = Object.keys(videoSources)[nextIndex];
+        document.getElementById("video-select").value = nextLanguage;
+
+        var videoSource = videoSources[nextLanguage];
+        playerInstance.load([{ file: videoSource }]);
+        playerInstance.play();
+      });
+
+      var selectedValue = document.getElementById("video-select").value;
+      var videoSource = videoSources[selectedValue];
+
+      playerInstance.setup({
+        autostart: true,
+        mute: false,
+        playlist: [{ file: videoSource }]
+      });
+    });
+  </script>
+
+  <div style="background-color: #0074d9; text-align: center; padding: 10px;">
+    <a href="https://telegram.me/cricstreaming" target="_blank">
+      <button id="joinTelegramButton" style="background-color: #fff; color: #0074d9; border: 2px solid #0074d9; padding: 5px 10px;">JOIN TELEGRAM</button>
+    </a>
+  </div>
+
+</body>
+</html>
